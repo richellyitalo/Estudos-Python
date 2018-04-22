@@ -1,0 +1,13 @@
+[num + 2 for t in numbers] # já executa na mesma linha
+
+[[print(n2) for n2 in n1]for n1 in listaen]
+#a;b;c;1;2;3
+
+[['x' if num % 2 != 0 else "o" for num in range(1, 4)] for val in range(1, 4)]
+#[['x', 'o', 'x'], ['x', 'o', 'x'], ['x', 'o', 'x']]
+
+
+~listas
+numeros = dict(first=1, second=2, third=3)
+numeros_ = {key: value ** 2 for key, value in numeros.itmes()}
+
