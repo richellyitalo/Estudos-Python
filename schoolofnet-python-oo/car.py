@@ -22,3 +22,7 @@ class Car:
         # print(cls.name)
 
         print(cls.comum)
+
+    @property
+    def vencimento(self):
+        return self.year + 1
