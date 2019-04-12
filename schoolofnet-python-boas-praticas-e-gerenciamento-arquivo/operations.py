@@ -1,4 +1,5 @@
 from bank_account_variables import accounts, money_slips
+from file import save_money_slips
 import utils
 from getpass import getpass
 
@@ -71,6 +72,7 @@ def withdraw():
     else:
         for money_bill in money_slips_user:
             money_slips[money_bill] -= money_slips_user[money_bill]
+        save_money_slips()
         print('Retire as notas: ')
         print(money_slips_user)
 
@@ -86,7 +88,8 @@ def account_connect():
 
 
 def get_menu_options_typed(account_auth):
-    print('1 - Saldo')
-    print('2 - Saque')
+    print(' 1 - Saldo')
+    print(' 2 - Saque')
     print('10 - Incluir cédulas') if is_admin(account_auth) else None
     return input('Informe uma opção: ')
+
