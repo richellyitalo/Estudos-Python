@@ -1,3 +1,6 @@
+from file import BankAccountFileWriter
+
+
 class BankAccount:
     def __init__(self, account_number, name, password, value, admin):
         self.account_number = account_number
@@ -23,14 +26,28 @@ class BankAccount:
 class CashMachineWithdraw:
     @staticmethod
     def withdraw(bank_account: BankAccount, value):
-        cash_machine = CashMachine({
-            '100': 105,
-            '50': 55,
-            '20': 25
-        })
+        from file import MoneySlipsFileWritter
+        cash_machine = CashMachineGetter().get()
         money_slips_user = cash_machine.withdraw(value)
         if money_slips_user:
-            bank_account.debit_balance(value)
+            CashMachineWithdraw.debit_balance(bank_account, value)
+            MoneySlipsFileWritter().write_money_slips(cash_machine.money_slips)
+        return cash_machine
+
+    @staticmethod
+    def debit_balance(bank_account, value):
+        bank_account.debit_balance(value)
+        BankAccountFileWriter().write_bank_account(bank_account)
+
+
+
+class CashMachineInsertMoneyBill:
+    @staticmethod
+    def insert_money_bill(money_bill, amount):
+        from file import MoneySlipsFileWritter
+        cash_machine = CashMachineGetter().get()
+        cash_machine.money_slips[money_bill] += amount
+        MoneySlipsFileWritter().write_money_slips(cash_machine.money_slips)
         return cash_machine
 
 
@@ -47,7 +64,6 @@ class CashMachine:
 
         if self.value_remaining == 0:
             self.__decrease_money_slips()
-
         return False if self.value_remaining != 0 else self.money_slips_user
 
     def __calculate_money_slips_user(self):
@@ -60,6 +76,15 @@ class CashMachine:
     def __decrease_money_slips(self):
         for money_bill in self.money_slips_user:
             self.money_slips[money_bill] -= self.money_slips_user[money_bill]
+
+# Não está usando método estático pois é o padrão - Factory
+# Tem o objetivo de trazer apenas o objeto 
+# mantendo o construtor em um único lugar
+class CashMachineGetter: 
+    def get(self):
+        from file import MoneySlipsFileReader
+        money_slips = MoneySlipsFileReader().get_money_slips()
+        return CashMachine(money_slips)
 
 
 accounts = [

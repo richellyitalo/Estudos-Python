@@ -1,6 +1,6 @@
 from getpass import getpass
 from auth import AuthBankAcount
-from cash_machine import CashMachine, CashMachineWithdraw
+from cash_machine import CashMachine, CashMachineWithdraw, CashMachineInsertMoneyBill
 
 
 class AuthBankConsole:
@@ -19,22 +19,30 @@ class MachineConsole:
 
     @staticmethod
     def __get_option_typed():
+        bank_account = AuthBankAcount.bank_accounted_authenticated
         print('%s - Saldo' % MachineOperation.OPERATION_SHOW_BALANCE)
         print('%s - Saque' % MachineOperation.OPERATION_WITHDRAW)
+        if bank_account.admin:
+            print('%s - Inserir cédulas' % MachineOperation.OPERATION_INSERT_BILL)
         return input('Informe uma opção: ')
 
 
 class MachineOperation:
     OPERATION_SHOW_BALANCE = '1'
     OPERATION_WITHDRAW = '2'
+    OPERATION_INSERT_BILL = '10'
 
     @staticmethod
     def do_operation(option):
-        if option is MachineOperation.OPERATION_SHOW_BALANCE:
-            ShowBalanceOperation.do_operation()
-        elif option is MachineOperation.OPERATION_WITHDRAW:
-            WithdrawOperation.do_operation()
+        bank_account = AuthBankAcount.bank_accounted_authenticated
 
+        if option == MachineOperation.OPERATION_SHOW_BALANCE:
+            ShowBalanceOperation.do_operation()
+        elif option == MachineOperation.OPERATION_WITHDRAW:
+            WithdrawOperation.do_operation()
+        elif option == MachineOperation.OPERATION_INSERT_BILL and bank_account.admin:
+            print('inserir cedulas')
+            InsertMoneyBillOperation.do_operation()
 
 class ShowBalanceOperation:
     @staticmethod
@@ -57,3 +65,12 @@ class WithdrawOperation:
             print('Pegue as notas no slot:')
             print(cash_machine.money_slips_user)
             print(vars(bank_account))
+
+
+class InsertMoneyBillOperation:
+    @staticmethod
+    def do_operation():    
+        ammount_typed = input('Informe a quantidade de cédulas: ')
+        money_bill_typed = input('Informe a cédula a ser incluída: ')
+        cash_machine = CashMachineInsertMoneyBill.insert_money_bill(money_bill_typed, int(ammount_typed))
+        print(cash_machine.money_slips)

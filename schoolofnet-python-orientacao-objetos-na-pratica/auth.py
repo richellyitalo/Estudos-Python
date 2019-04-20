@@ -1,5 +1,6 @@
 from cash_machine import accounts
 from cash_machine import BankAccount
+from file import BankAccountFileReader
 
 
 class AuthBankAcount:
@@ -7,10 +8,12 @@ class AuthBankAcount:
 
     @staticmethod
     def authenticate(account_number, password):
-        for account in accounts:
-            if AuthBankAcount.__has_bank_account_valid(account, account_number, password):
-                AuthBankAcount.bank_accounted_authenticated = account
-                return account
+        bank_account_fr = BankAccountFileReader()
+        bank_account = bank_account_fr.get_account(account_number)
+        
+        if bank_account and AuthBankAcount.__has_bank_account_valid(bank_account, account_number, password):
+            AuthBankAcount.bank_accounted_authenticated = bank_account
+            return bank_account
         return False
 
     @staticmethod

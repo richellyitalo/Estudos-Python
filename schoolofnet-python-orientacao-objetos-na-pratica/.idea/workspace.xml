@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f268c00b-fb22-433a-b58d-eb3974ecd166" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cash_machine.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/console.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
-    </list>
+    <list default="true" id="f268c00b-fb22-433a-b58d-eb3974ecd166" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +67,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -89,7 +84,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -143,11 +137,12 @@
       <workItem from="1555055346777" duration="42000" />
       <workItem from="1555592777164" duration="8592000" />
       <workItem from="1555674555091" duration="4614000" />
+      <workItem from="1555683066441" duration="230000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49162000" />
+    <option name="totallyTimeSpent" value="49392000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -161,7 +156,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09001513" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.090771556" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
